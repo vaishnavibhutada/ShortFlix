@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+    <link rel="stylesheet" href="signup.css">
+    <title></title>
+    <style>
+        .error {
+            color: red;
+            font-size: 14px;
+            display: inline-block; /* Make the error message display inline */
+            margin-top: 5px; /* Add some spacing between the input and the error message */
+            text-decoration: none; /* Remove underline */
+        }
+    </style>
+    <script>
+        function inputOnFocus(element) {
+            element.parentNode.style.borderBottom = "2px solid #ff3f5f";
+        }
+
+        function inputOnBlur(element) {
+            if (element.value === "") {
+                element.parentNode.style.borderBottom = "2px solid #8a8a8a";
+            }
+        }
+
+        function validateEmail(email) {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return emailRegex.test(email);
+        }
+
+        function validatePassword(password) {
+            // Password should be at least 8 characters long
+            if (password.length < 8) {
+                return false;
+            }
+            // You can add additional criteria for the password here, such as requiring both letters and numbers
+            return true;
+        }
+
+        function validateForm() {
+            const emailInput = document.getElementsByName("email")[0];
+            const passwordInput = document.getElementsByName("password")[0];
+            const repeatPasswordInput = document.getElementsByName("repeat-password")[0];
+            const emailErrorSpan = document.getElementById("email-error");
+            const passwordErrorSpan = document.getElementById("password-error");
+            const repeatPasswordErrorSpan = document.getElementById("repeat-password-error");
+
+            // Validate email
+            if (!validateEmail(emailInput.value)) {
+                emailErrorSpan.innerText = "Please enter a valid email address.";
+                return false;
+            } else {
+                emailErrorSpan.innerText = "";
+            }
+
+            // Validate password
+            if (!validatePassword(passwordInput.value)) {
+                passwordErrorSpan.innerText = "Password must be at least 8 characters long.";
+                return false;
+            } else {
+                passwordErrorSpan.innerText = "";
+            }
+
+            // Validate repeated password
+            if (passwordInput.value !== repeatPasswordInput.value) {
+                repeatPasswordErrorSpan.innerText = "Passwords do not match.";
+                return false;
+            } else {
+                repeatPasswordErrorSpan.innerText = "";
+            }
+
+            return true;
+        }
+    </script>
+
+</head>
+
+<body>
+
+    <div class="topSide">
+        <div class="netflixIcon">
+            <a href="#">
+                <img src="s1 - Copy.jpg" class="img-netflixIcon" />
+            </a>
+        </div>
+        <div class="parent-login">
+            <form class="login-card" action="signup.php" onsubmit="return validateForm()">
+                <h1>Sign Up</h1>
+                <div class="userInput">
+                    <input type="text" name="email" placeholder="Email or phone number" onfocus="inputOnFocus(this)" onblur="inputOnBlur(this)" />
+                    <span id="email-error" class="error"></span>
+                </div>
+                <div class="userInput">
+                    <input type="password" name="password" placeholder="Password" onfocus="inputOnFocus(this)" onblur="inputOnBlur(this)" />
+                    <span id="password-error" class="error"></span>
+                </div>
+                <div class="userInput">
+                    <input type="password" name="repeat-password" placeholder="Repeat Password" onfocus="inputOnFocus(this)" onblur="inputOnBlur(this)" />
+                    <span id="repeat-password-error" class="error"></span>
+                </div>
+                <div>
+                    <button type="submit" class="btn-login">Sign In</button>
+                </div>
+                <div class="remMe">
+                    <div>
+                        <input type="checkbox">
+                        <label class="cText">Remember me</label>
+                    </div>
+                    <p>By creating an account you agree to our <a href="#" style="color:dodgerblue">Terms & Privacy</a>.</p>
+                </div>
+                <div class="google cLink ">
+                    This page is protected by Google reCAPTCHA to ensure you're not a bot.
+                </div>
+            </form>
+        </div>
+    </div>
+
+</body>
+
+</html>

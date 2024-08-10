@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home  | ShortFlix </title>
+    <link rel="stylesheet" href="netflixoriginals.css"/>
+    <style>
+.container {
+    width:100%;
+    margin: 50px auto;
+    text-align: center;
+}
+
+input[type="text"] {
+    width: 80%;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #060606;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #d32f2f;
+}
+
+</style>
+</head>
+<body>
+  <!-- navbar -->
+  <div class="nav">
+    <div class="nav_left">
+      
+
+            <img class="nav_logo" src="s1 - Copy.jpg" alt="">
+        </a>
+        
+    </div>
+   
+    <div class="container">
+      <a href="search.php"></a>
+      <h1></h1>
+      <input type="text" id="searchInput" name="search" placeholder="Search for movies or shows">
+      <button onclick="search()">Search</button>
+      <div id="results"></div>
+      <h1></h1>
+   
+      
+    </div>
+  </div>
+    <div class="nav_right">
+      
+        <img src="Netflix-avatar.png" class="nav_Netflix-avtar"alt="">
+     
+    </div>
+  </div>
+  <!-- banner -->
+  <header id="banner">
+
+    <div id="banner_contents">
+      <h1 id="banner_title">
+        Stranger Things
+      </h1>
+      <div id="banner_buttons">
+        <button id="banner_button">Play</button>
+        <button id="banner_button">My List</button>
+      </div>
+      <p id="banner_description"></p>
+      when a younger boy vanishes,a small town convers a mystry involving <br>secret experiments,
+      terrifying supernatural forces, <br>and one stranger little girl.
+      </div>
+      <div id="banner_fadeBottom">
+
+      </div>
+      </header>
+ <!-- Netflix Originals -->
+        <div class="row">
+    <h2>SHORTFLIX ORIGINALS</h2>
+    <div class="row_posters">
+        <img src="large-movie1.jpg" alt="" class="row_poster row_posterLarge"/>
+        <img src="large-movie6.jpg" alt="" class="row_poster row_posterLarge"/>
+        <img src="large-movie3.jpg" alt="" class="row_poster row_posterLarge"/>
+        <img src="large-movie4.jpg" alt="" class="row_poster row_posterLarge"/>
+        <img src="large-movie5.jpg" alt="" class="row_poster row_posterLarge"/>
+        <img src="large-movie8.jpg" alt="" class="row_poster row_posterLarge"/>
+        <img src="large-movie7.jpg" alt="" class="row_poster row_posterLarge"/>
+        <img src="large-movie2.jpg" alt="" class="row_poster row_posterLarge"/>
+       
+        <a href="netflixoriginals.html"> 
+            <img class="nav_logo" src="s1 - Copy.jpg" alt="">
+        </a>
+    </div>
+        </div>
+    </div>
+ 
+
+
+
+  </body>
+  <script>
+  function search() {
+    var query = document.getElementById('searchInput').value;
+    if (query.trim() !== '') {
+        // Make AJAX request to backend PHP script
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                document.getElementById('results').innerHTML = this.responseText;
+            }
+        };
+        xhttp.open('GET', 'search.php?query=' + query, true);
+        xhttp.send();
+    }
+}
+</script>
+
+</html>
